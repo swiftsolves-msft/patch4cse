@@ -67,8 +67,11 @@ foreach ($sub in $subs) {
 
             Default {$vmver = "Unable to determine the VM OS and Version"}
         }
+
+        #build varibale for cmd to run and base fileuris to grab bash script
         $cmdtorun = "sudo sh " + $vmver
-        $uri = '["' + "https://raw.githubusercontent.com/swiftsolves-msft/patch4cse/main/linux/omi/" + $vmver + '"]'
+        $uri = "https://raw.githubusercontent.com/swiftsolves-msft/patch4cse/main/linux/omi/" + $vmver
+        [array]$fileuris = $uri
 
         $csename = "OMICSEPatch_" + $vmver
 
@@ -76,7 +79,7 @@ foreach ($sub in $subs) {
         $AzDeployName = $VMNAME + $csename # + $datetime
 
         #New-AzDeployment -Name $AzDeployName -Location $VMDetail.location -TemplateUri "https://raw.githubusercontent.com/swiftsolves-msft/patch4cse/main/azuredeploy.json" -extensionName $csename -vmName $VMNAME -fileUris $uri -commandToExecute $cmdtorun -isWindowsOS $false -vmlocation $VMDetail.location
-        New-AzResourceGroupDeployment -Name $AzDeployName -ResourceGroupName $RGNAME -TemplateUri "https://raw.githubusercontent.com/swiftsolves-msft/patch4cse/main/azuredeploy.json" -extensionName $csename -vmName $VMNAME -fileUris $uri -commandToExecute $cmdtorun -isWindowsOS $false -vmlocation $VMDetail.location
+        New-AzResourceGroupDeployment -Name $AzDeployName -ResourceGroupName $RGNAME -TemplateUri "https://raw.githubusercontent.com/swiftsolves-msft/patch4cse/main/azuredeploy.json" -extensionName $csename -vmName $VMNAME -fileUris $fileuris -commandToExecute $cmdtorun -isWindowsOS $false -vmlocation $VMDetail.location
 
     }
 
