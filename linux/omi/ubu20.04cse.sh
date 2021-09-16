@@ -1,1 +1,10 @@
-curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - && apt-add-repository https://packages.microsoft.com/ubuntu/20.04/prod && apt-get update && apt-get install -y omi
+#!/bin/bash
+
+# Add MSRepo
+sudo curl -sSL https://packages.microsoft.com/keys/microsoft.asc
+sudo apt-key add -
+sudo apt-add-repository https://packages.microsoft.com/ubuntu/20.04/prod
+sudo apt-get update
+
+# Install omi release
+sudo apt-get install -y omi
