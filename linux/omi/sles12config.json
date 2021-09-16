@@ -1,3 +1,0 @@
-{
-    "commandToExecute": "rpm -Uvh https://packages.microsoft.com/config/sles/12/packages-microsoft-prod.rpm && yum install -y omi"
-}
