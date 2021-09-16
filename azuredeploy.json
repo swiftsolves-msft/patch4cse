@@ -2,7 +2,7 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "location": {
+    "vmlocation": {
       "metadata": {
         "description": "The Location For the resources"
       },
@@ -40,7 +40,7 @@
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "apiVersion": "2017-03-30",
       "name": "[concat(parameters('vmName'), '/', variables('extensionNameWindows'))]",
-      "location": "[parameters('location')]",
+      "location": "[parameters('vmlocation')]",
       "dependsOn": [ ],
       "properties": {
         "publisher": "Microsoft.Compute",
@@ -60,7 +60,7 @@
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "apiVersion": "2017-03-30",
       "name": "[concat(parameters('vmName'), '/', variables('extensionNameLinux'))]",
-      "location": "[parameters('location')]",
+      "location": "[parameters('vmlocation')]",
       "dependsOn": [ ],
       "properties": {
         "publisher": "Microsoft.Azure.Extensions",
